@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+
+<body>
+
+    <div class="container">
+
+        <%- include('../partials/menu.ejs') %>
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3>EDITAR DE CATEGORIA</h3>
+                <%= categoria.data.nome_cliente %>
+                <%= categoria.data.cod_cliente %>
+            </div>
+
+            <div class="card-body">
+
+                <form action="/editarCategoria" method="post">
+
+                    <label for="nome_categoria"></label>
+                    <input 
+                    class="form-control" type="text" 
+                    name="nome_cliente" id="nome_cliente"
+                    value="<%= categoria.data.nome_cliente %>">
+
+                    <input 
+                    type="hidden" 
+                    name="cod_cliente" 
+                    value="<%= categoria.data.cod_cliente %>">
+
+                    <button class="btn btn-success mt-2">EDITAR</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<%- include('../partials/footer.ejs') %>
+
+</html>
