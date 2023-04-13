@@ -48,39 +48,54 @@ app.get('/listagemCategorias', (req, res)=>{
     });
 });
 
-/*EDITAR*/
-// app.get('/editarCategoria/:cod_categoria', (req, res)=>{
 
-//     let {cod_categoria} = req.params;
+ app.get('/editarCategoria/:cod_categoria', (req, res)=>{
 
-//     urlListarCategoriaPK = `http://localhost:3000/listarCategoriaPK/${cod_categoria}`;
+    let {cod_categoria} = req.params;
 
-//     // console.log("COD_CATEGORIA: " + cod_categoria); 
+    urlListarCategoriaPK = `http://localhost:3000/listarCategoriaPK/${cod_categoria}`;
 
-//     axios.get(urlListarCategoriaPK)
-//         .then((response)=>{
-//             let categoria = response.data;
-//             //console.log(categoria.data);
-//             res.render('categoria/editarCategoria.ejs', {categoria});
+      console.log("COD_CATEGORIA: " + cod_categoria); 
 
-//         });
+    axios.get(urlListarCategoriaPK)
+         .then((response)=>{
+             let categoria = response.data;
+             //console.log(categoria.data);
+             res.render('categoria/editarCategoria.ejs', {categoria});
 
-// });
+         });
 
-// app.post('/editarCategoria', (req, res)=>{
+ });
 
-//     //console.log(req.body);
+ app.post('/editarCategoria', (req, res)=>{
 
-//     let urlEditar = 'http://localhost:3000/alterarCategoria';
+     //console.log(req.body);
 
-//     axios.put(urlEditar, req.body)
-//         .then((response)=>{
-//             res.send('DADO ALTERADO');
-//         });
+     let urlEditar = 'http://localhost:3000/alterarCategoria';
 
-// });
+     axios.put(urlEditar, req.body)
+         .then((response)=>{
+             res.send('DADO ALTERADO');
+         });
 
-/* FIM DAS ROTAS DE CATEGORIA */
+ });
+
+ app.get('/excluirCategoria/:cod_cliente', (req, res)=>{
+    let {cod_cliente} = req.params;
+
+    const  urlExcluirCategoria = `http://localhost:3000/excluirCategoria/${cod_cliente}`;
+
+    axios.delete(urlExcluirCategoria)
+    .then((response)=> {
+     res.redirect('/listagemCategorias');
+    });
+    
+   
+
+});
+
+
+
 
 app.listen(3001, ()=>{
     console.log("SERVIDOR FRONTEND RODANDO EM - http://localhost:3001");
